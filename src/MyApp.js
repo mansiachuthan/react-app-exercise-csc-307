@@ -17,7 +17,7 @@ function updateList(person) {
     setCharacters([...characters, person]);
   }
 
-  async function fetchAll(){
+async function fetchAll(){
     try {
        const response = await axios.get('http://localhost:5000/users');
        console.log(response);
@@ -29,6 +29,25 @@ function updateList(person) {
        return false;         
           }
 }
+
+async function makePostCall(person){
+  try {
+     const response = await axios.post('http://localhost:5000/users', person);
+     return response;
+  }
+  catch (error) {
+     console.log(error);
+     return false;
+  }
+}
+
+function updateList(person) { 
+  makePostCall(person).then( result => {
+  if (result && result.status === 200)
+     setCharacters([...characters, person] );
+  });
+}
+
 useEffect(() => {
  console.log("in useEffect");
     fetchAll().then( result => {
