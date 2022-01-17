@@ -4,7 +4,7 @@ function Form(props) {
   const [person, setPerson] = useState(
      {
         name: "",
-        job: "",
+        job: ""
      }
   );
 
